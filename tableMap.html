@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <title>IIT Career Fair Interactive Map | Built by Tendian.io</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <!-- main css for responsive design-->
+    <link href="http://cmc.iit.edu:1122/Responsive_design_css/style.css" rel="stylesheet" type="text/css">
+
+    <!-- media queries css -->
+    <link href="http://cmc.iit.edu:1122/Responsive_design_css/media-queries.css" rel="stylesheet" type="text/css">
+
+    <!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+    <link rel="stylesheet" href="http://cmc.iit.edu:1122/indexstyle.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <!-- script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script -->
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+    <!-- Map Tooltip -->
+    <script src="http://cmc.iit.edu:1122/js/lib/jquery-1.7.1.min.js"></script>
+    <link rel="stylesheet" href="http://cmc.iit.edu:1122/hotspot.css" type="text/css" />
+    <script src="http://cmc.iit.edu:1122/js/hotspot.js"></script>
+
+    <!-- Tablesorter -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.13.3/jquery.tablesorter.min.js"></script>
+
+    <style type="text/css">
+    #live-search {background: yellow;border: 2px solid black;color: #000;font-weight: bold;margin-bottom:10px;}
+    #loaderContainer {position:absolute; z-index:100; margin: auto;background: rgba(0,0,0,0.8);width: 100%;height: 100%;left: 0;right: 0;top: 0;bottom: 0;}
+    span.viewcompany {cursor: pointer; color: blue; text-decoration: underline;}
+    .hs-spot.visible.visible-tooltip .hs-spot-shape {width: 26px;height: 26px;left: 1px;top: 1px;}
+    .hs-spot.visible:hover .hs-spot-shape-inner, .hs-spot.visible.visible-tooltip .hs-spot-shape-inner { background: #0af; }
+
+    /* tables */
+    table.tablesorter {
+        font-family:arial;
+        background-color: #CDCDCD;
+        margin:10px 0pt 15px;
+        font-size: 8pt;
+        width: 100%;
+        text-align: left;
+    }
+    table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+        background-color: #e6EEEE;
+        border: 1px solid #FFF;
+        font-size: 8pt;
+        padding: 4px;
+    }
+    table.tablesorter thead tr .tablesorter-header {
+        background-image: url(http://tablesorter.com/themes/blue/bg.gif);
+        background-repeat: no-repeat;
+        background-position: center right;
+        cursor: pointer;
+    }
+    table.tablesorter tbody td {
+        color: #3D3D3D;
+        padding: 4px;
+        background-color: #FFF;
+        vertical-align: top;
+    }
+    table.tablesorter tbody tr.odd td {
+        background-color:#F0F0F6;
+    }
+    table.tablesorter thead tr .tablesorter-headerAsc {
+        background-image: url(http://tablesorter.com/themes/blue/asc.gif);
+    }
+    table.tablesorter thead tr .tablesorter-headerDesc {
+        background-image: url(http://tablesorter.com/themes/blue/desc.gif);
+    }
+    table.tablesorter thead tr .tablesorter-headerDesc, table.tablesorter thead tr .tablesorter-headerAsc {
+    background-color: #8dbdd8;
+    }
+    </style>
+
+
+</head>
+
+<body>
+
+    <!-- Div for the Entire page -->
+    <div id="pagewrap">
+        <header id="header">
+
+            <hgroup>
+                <!-- img src="iit_logo.jpg" alt="Smiley face" width="20%" -->
+                <center>
+                    <div id="headeriit">
+                        <img src="http://cmc.iit.edu:1122/iitlogo.png">
+                        <!-- h1 id="site-logo">Illinois Institute of Technology</h1>
+
+    <h2 id="site-description">Career Fair - Fall 2013 - CMC</h2 -->
+                    </div>
+                </center>
+            </hgroup>
+
+        </header>
+
+        <script>
+        </script>
+        <!-- Div for the Content Area -->
+        <div id="content">
+            <fieldset style="border:1px solid #a8a8a8; -webkit-border-radius: 9px; -moz-border-radius: 9px;border-radius: 9px;">
+                <legend style="border:1px solid #a8a8a8; -webkit-border-radius: 4px;    -moz-border-radius: 4px;border-radius: 4px;"><b>Herman Hall Map - Company's Table Location</b>
+                </legend>
+
+                <div id="imageMapDiv" data-role="page" id="home" style="float:left;width:68%;">
+                    <div id="loaderContainer">
+                        <center style="top: 50%;position: relative;">
+                            <img id="loader" src="http://cmc.iit.edu:1122/loader.gif">
+                        </center>
+                    </div>
+                    <div id="hotspot-51" class="hs-wrap hs-loading">
+                        <img id="myimg" src="http://cmc.iit.edu:1122/hermann.jpg">
+
+                    </div>
+
+                </div>
+
+                <div style="float:left;width:32%;">
+                    <form id="live-search" action="" class="styled" method="post">
+                        <fieldset>
+                            <input type="text" class="text-input" id="filter" value="" placeholder="Search for a company">
+                            <br><span id="filter-count"></span>
+                            <br>You may need to scroll down
+                        </fieldset>
+                    </form>
+                    <div style="height: 1000px;overflow: auto;padding-right: 5px;">
+	                    <table border="1" bordercolor="#000000" width="100%" cellpadding="0" cellspacing="0" id="companylist" class="tablesorter">
+	                      <thead style="font-weight:bold;color:#000;">
+	                        <tr>
+	                            <td>Company</td>
+	                            <td>Hall</td>
+	                            <td>Table</td>
+	                        </tr>
+	                      </thead>
+	                      <tbody>
+	                      </tbody>
+	                    </table>
+                    </div>
+
+                </div>
+
+        </div>
+        </fieldset>
+
+        <footer id="footer">
+            <center>
+                <p>&#169; 2013 Illinois Institute of Technology 3300 South Federal Street, Chicago, IL 60616-3793 Tel 312.567.3000
+                </p>
+                <p>Modified by <a href="http://tendian.io/">Eric Tendian</a></p>
+            </center>
+        </footer>
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: 'https://s3.amazonaws.com/iit.io/tableMap.json',
+                dataType: "jsonp",
+                jsonpCallback: "myJSONAPI",
+                success: function (data) {
+                    var width = null;
+                    var height = null;
+                    $.each(data.result, function (index, value) {
+                        var str = value.co_ords;
+                        var n = str.split(",");
+                        var img = document.getElementById('myimg');
+                        if (width==null) width = img.clientWidth;
+                        if (height==null) height = img.clientHeight;
+                        var x = width / 634;
+                        var y = height / 1116;
+                        var xVal = n[0] * x;
+                        var yVal = n[1] * y;
+                        xVal += 7;
+                        yVal += 4;
+                        $("#hotspot-51").append('<div class="hs-spot-object" data-type="spot" data-x="' + xVal + '" data-y="' + yVal + '" data-width="30" data-height="30" data-popup-position="top" data-visible="visible" data-tooltip-width="200" data-tooltip-auto-width="false" data-company="'+value.CompanyName+'">Company: ' + value.CompanyName + '<br>Hall:  ' + value.roomName + '<br>Table: ' + value.tableNum + '</div>');
+                        $("#companylist tbody").append('<tr><td><span class="viewcompany">'+value.CompanyName+'</span></td><td>' + value.roomName + '</td><td>' + value.tableNum + '</td></tr>')
+                    });
+                    $("#hotspot-51").hotspot();
+                    $("#loaderContainer").remove();
+                    $("#companylist").tablesorter( {sortList: [[0,0]]} );
+                }
+            });
+            $("#filter").on('input', function(){
+                // Retrieve the input field text and reset the count to zero
+                var filter = $(this).val(), count = 0;
+         
+                // Loop through the comment list
+                $(".hs-spot").each(function(){
+         
+                    // If the list item does not contain the text phrase fade it out
+                    if ($(this).find('.hs-tooltip').text().search(new RegExp(filter, "i")) < 0) {
+                        $(this).removeClass('visible-tooltip');
+                    // Show the list item if the phrase matches and increase the count by 1
+                    } else {
+                        if (filter.length==0) $(this).removeClass('visible-tooltip');
+                        else {
+                            $(this).addClass('visible-tooltip');
+                            count++;
+                        }
+                    }
+                });
+         
+                // Update the count
+                var numberItems = count;
+                if (filter.length>0) $("#filter-count").text("Number of companies found = "+count);
+                else $("#filter-count").text("");
+            });
+            $(document).on('click', 'span.viewcompany',function() {
+                var company = $(this).text();
+                // Retrieve the input field text and reset the count to zero
+                var filter = company, count = 0;
+         
+                // Loop through the comment list
+                $(".hs-spot").each(function(){
+         
+                    // If the list item does not contain the text phrase fade it out
+                    if ($(this).find('.hs-tooltip').text().search(new RegExp(filter, "i")) < 0) {
+                        if (!$(this).hasClass('clicked')) $(this).removeClass('visible-tooltip');
+                    // Show the list item if the phrase matches and increase the count by 1
+                    } else {
+                        if (!$(this).hasClass('clicked')) $(this).addClass('visible-tooltip clicked');
+                        else $(this).removeClass('visible-tooltip clicked');
+                    }
+                });
+            });
+            var curritem = null;
+            $(document).on('mouseover', 'span.viewcompany', function() {
+                var company = $(this).text();
+                // Retrieve the input field text and reset the count to zero
+                var filter = company, count = 0;
+         
+                // Loop through the comment list
+                $(".hs-spot").each(function(){
+         
+                    // If the list item does not contain the text phrase fade it out
+                    if ($(this).find('.hs-tooltip').text().search(new RegExp(filter, "i")) < 0) {
+                        if (!$(this).hasClass('clicked')) $(this).removeClass('visible-tooltip');
+                    // Show the list item if the phrase matches and increase the count by 1
+                    } else {
+                        $(this).addClass('visible-tooltip');
+                        curritem = $(this);
+                    }
+                });
+            });
+            $(document).on('mouseout', 'span.viewcompany', function() {
+                if (!$(curritem).hasClass('clicked')) curritem.removeClass('visible-tooltip');
+            });
+        });
+
+        $('#imagemap').click(function (e) {
+            var offset = $(this).offset();
+            alert(e.clientX - offset.left);
+            alert(e.clientY - offset.top);
+        });
+    </script>
+</body>
+
+</html>
