@@ -1,0 +1,84 @@
+Women in Engineering
+
+train is 100m long
+station is 150m long
++2.7km/hr/s
+cruising speed: 90km/hr
+-3.8km/hr/s
+
+d=(a*t^2)/2
+
+times in seconds
+d = departure time
+a = arrival time
+
+***** - ddddd  aaaaa - ddddd  aaaaa *****
+1 train 1 section
+***** -     1   4030 *****
+
+2 trains 3 sections
+***** -     1     49 -   170    218 -   339   4328 *****
+***** -   171    219 -   340    388 -  4329   8318 *****
+[[d,travelTime(s1)],[{[0][0][1]}+120,a],[d,a]],
+[[{[0][0][1]}+1,{[1][0][0]}+travelTime(s1)],[d,a],[d,a]]
+
+# of steps = trains * sections
+0. first train, first segment 0 % 3 = 0
+1. first train, second segment 1 % 3 = 1
+2. second train, first segment 2 % 3 = 0
+3. first train, third segment 3 % 3 = 1
+4. second train, second segment 4 % 3 = 0
+5. {third train, first segment} 5 % 3 = 0
+6. second train, third segment 5 % 2 = 1
+7. {third train, second segment}
+{fourth train, first segment}
+8. {third train, third segment}
+
+queue
+push all
+pop all
+
+Queue<Integer> trains = new Queue<Integer>();
+
+1
+2 1
+3 2 1
+4 3 2 1
+  4 3 2
+    4 3
+      4
+
+1
+2 1
+  2
+
+1
+2 1
+3 2 1
+  3 2
+    3
+
+
+3d array
+# of trains x # of segments x 2
+int[][][] schedule = new int[input[0]][cnt][2];
+
+Accept from 1 to 5 trains - Accept from 1 to 5 sections - The total of the sections must equal 100000
+{# of trains} {sect1} {sect2} {sect3} {sect4} {sect5}
+
+train must stop for 2mins
+
+To ensure safety, only one train may be in any section at time. If train is ready to depart, it must wait until the next station is empty. A train may depart one second after the next station becomes empty
+
+1st, 2nd, 1st, 2nd, 3rd, 1st, 2nd, 3rd, 4th, 1st, 2nd, 3rd, 4th, 5th, 1st, 2nd, 3rd, 4th, 5th,
+
+queue - add train 1 to queue, remove, add 1 and 2
+
+create an array of ints, one for each section, representing the train #
+
+
+move()
+
+
+train 1: 1 to time+=travelTime(dist)+120
+time
